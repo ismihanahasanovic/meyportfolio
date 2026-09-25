@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>meya — Mejra Numanović, Grafički dizajn</title>
+<link rel="canonical" href="https://github.com/ismihanahasanovic/meyportfolio.git">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --peach:#FBC58E;
+    --peach-soft:#FDE1C2;
+    --pink:#F299A0;
+    --pink-soft:#F9CBCF;
+    --cream:#FBF3D9;
+    --ink:#3a2a2e;
+    --paper:#FFFDF8;
+    --grad: linear-gradient(160deg, #F7EFA0 0%, #FBD9A6 45%, #F4A8AC 100%);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Quicksand', sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Fredoka', sans-serif;
+  }
+
+  a{color:inherit; text-decoration:none;}
+
+  /* ---------- utility ---------- */
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  .eyebrow{
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    font-size:.8rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--pink);
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 40px;
+    background:rgba(255,253,248,.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(58,42,46,.06);
+  }
+  .logo-mini{
+    font-family:'Fredoka', sans-serif;
+    font-weight:700;
+    font-size:1.5rem;
+    display:flex;
+  }
+  .logo-mini span:nth-child(1){color:var(--peach);}
+  .logo-mini span:nth-child(2){color:var(--pink); margin-left:-2px;}
+  .logo-mini span:nth-child(3){color:var(--peach); margin-left:-1px;}
+  .logo-mini span:nth-child(4){color:var(--pink); margin-left:-1px;}
+
+  nav ul{list-style:none; display:flex; gap:34px;}
+  nav a{
+    font-weight:600; font-size:.92rem;
+    position:relative;
+  }
+  nav a::after{
+    content:''; position:absolute; left:0; bottom:-6px; height:2px; width:0;
+    background:var(--pink); transition:width .25s ease;
+  }
+  nav a:hover::after{width:100%;}
+
+  .burger{display:none;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding:140px 24px 100px;
+    background:var(--grad);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background-image:radial-gradient(circle, rgba(255,255,255,.55) 2px, transparent 2px);
+    background-size:34px 34px;
+    opacity:.35;
+    pointer-events:none;
+  }
+  .hero-tag{
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    font-size:.78rem;
+    color:#8a4a52;
+    margin-bottom:26px;
+    position:relative;
+  }
+  .hero-logo{
+    font-family:'Fredoka', sans-serif;
+    font-weight:700;
+    font-size:clamp(5rem, 18vw, 12rem);
+    line-height:.85;
+    display:flex;
+    position:relative;
+    filter:drop-shadow(0 18px 30px rgba(139,60,70,.18));
+  }
+  .hero-logo span{display:inline-block;}
+  .hero-logo .m{color:var(--peach); transform:translateY(2px);}
+  .hero-logo .e{color:#fff; -webkit-text-stroke:3px var(--pink); margin-left:-.05em;}
+  .hero-logo .y{color:var(--peach); margin-left:-.03em;}
+  .hero-logo .a{color:var(--pink); margin-left:-.03em;}
+
+  .hero-role{
+    margin-top:28px;
+    font-size:clamp(1.1rem, 2.2vw, 1.5rem);
+    font-weight:600;
+    color:var(--ink);
+  }
+  .hero-name{
+    margin-top:6px;
+    font-size:1rem;
+    color:#7a4c52;
+    font-weight:500;
+  }
+  .hero-scroll{
+    position:absolute; bottom:36px; left:50%; transform:translateX(-50%);
+    width:26px; height:42px; border:2px solid #8a4a52; border-radius:20px;
+    opacity:.6;
+  }
+  .hero-scroll::after{
+    content:''; position:absolute; top:8px; left:50%; width:4px; height:8px;
+    background:#8a4a52; border-radius:4px; transform:translateX(-50%);
+    animation:scrollDot 1.6s infinite;
+  }
+  @keyframes scrollDot{
+    0%{opacity:1; top:8px;}
+    70%{opacity:0; top:20px;}
+    100%{opacity:0; top:8px;}
+  }
+
+  /* ---------- section shell : book-page motif ---------- */
+  .page{
+    display:flex;
+    min-height:auto;
+  }
+  .page-strip{
+    width:120px;
+    min-width:120px;
+    background:var(--grad);
+    position:relative;
+  }
+  .page-strip .num{
+    position:absolute; top:40px; left:50%; transform:translateX(-50%) rotate(180deg);
+    writing-mode:vertical-rl;
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    font-size:.85rem;
+    letter-spacing:.08em;
+    color:#7a4c52;
+    text-transform:uppercase;
+  }
+  .page-body{
+    flex:1;
+    padding:110px 60px;
+  }
+  @media(max-width:720px){
+    .page-strip{width:44px; min-width:44px;}
+    .page-body{padding:80px 24px;}
+    .page-strip .num{font-size:.6rem; top:24px;}
+  }
+
+  /* ---------- about ---------- */
+  .about-grid{
+    max-width:760px;
+  }
+
+  .about-body h2{
+    font-size:clamp(1.8rem,3vw,2.6rem);
+    color:var(--pink);
+    margin-bottom:22px;
+  }
+  .about-body p{
+    font-size:1.02rem;
+    line-height:1.75;
+    color:#584047;
+    margin-bottom:16px;
+  }
+  .about-credit{
+    margin-top:28px;
+    display:inline-flex;
+    align-items:center;
+    gap:14px;
+    padding:14px 22px;
+    background:var(--cream);
+    border-radius:100px;
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    font-size:.85rem;
+    color:#8a4a52;
+  }
+  .about-credit .dot{width:6px;height:6px;border-radius:50%;background:var(--pink);}
+
+  /* ---------- portfolio ---------- */
+  .portfolio-intro{max-width:640px; margin-bottom:56px;}
+  .portfolio-intro h2{font-size:clamp(1.8rem,3vw,2.6rem); color:var(--pink); margin-bottom:16px;}
+  .portfolio-intro p{color:#584047; line-height:1.7; font-size:1.02rem;}
+
+  .cat-nav{
+    display:flex; flex-wrap:wrap; gap:10px;
+    margin-bottom:70px;
+  }
+  .cat-nav a{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600; font-size:.85rem;
+    padding:9px 18px;
+    border-radius:100px;
+    background:var(--paper);
+    border:1.5px solid var(--peach);
+    color:#8a4a52;
+    transition:.2s ease;
+  }
+  .cat-nav a:hover{background:var(--peach); color:#fff;}
+
+  .category{
+    margin-bottom:88px;
+    scroll-margin-top:110px;
+  }
+  .category-head{
+    display:flex; align-items:baseline; gap:16px;
+    margin-bottom:26px;
+    border-bottom:2px solid var(--pink-soft);
+    padding-bottom:14px;
+  }
+  .category-head .idx{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700; font-size:1.4rem; color:var(--pink);
+  }
+  .category-head h3{
+    font-size:1.5rem; color:var(--ink);
+  }
+  .category-head .count{
+    margin-left:auto;
+    font-size:.8rem;
+    color:#a37f85;
+    font-weight:600;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+  }
+  @media(max-width:900px){ .grid{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:560px){ .grid{grid-template-columns:1fr;} }
+
+  .slot{
+    aspect-ratio:4/5;
+    border-radius:18px;
+    border:2px dashed rgba(58,42,46,.22);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:10px;
+    cursor:pointer;
+    transition:.25s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .slot::before{
+    content:'';
+    position:absolute; inset:0;
+    opacity:.55;
+  }
+  .slot span.icon{
+    font-size:1.8rem;
+    color:#8a4a52;
+    z-index:1;
+  }
+  .slot span.txt{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:.78rem;
+    letter-spacing:.03em;
+    color:#8a4a52;
+    z-index:1;
+    text-align:center;
+    padding:0 14px;
+  }
+  .slot:hover{ transform:translateY(-4px); border-color:var(--pink); }
+  .slot:hover::before{opacity:.8;}
+
+  .slot.t1::before{background:linear-gradient(160deg, var(--peach-soft), #fff);}
+  .slot.t2::before{background:linear-gradient(160deg, var(--pink-soft), #fff);}
+  .slot.t3::before{background:linear-gradient(160deg, var(--cream), #fff);}
+
+  /* wide slot variant for landscape-ish categories */
+  .grid.wide{grid-template-columns:repeat(2,1fr);}
+  .grid.wide .slot{aspect-ratio:16/10;}
+  @media(max-width:640px){ .grid.wide{grid-template-columns:1fr;} }
+
+  /* duo: two-work layout, slightly asymmetric for an artist's-desk feel */
+  .grid.duo{
+    grid-template-columns:1.15fr .85fr;
+    align-items:stretch;
+  }
+  .grid.duo .slot:nth-child(1){aspect-ratio:4/5; transform:rotate(-.6deg);}
+  .grid.duo .slot:nth-child(2){aspect-ratio:4/5; transform:rotate(.8deg); margin-top:34px;}
+  .grid.duo .slot:hover{transform:rotate(0deg) translateY(-4px) !important;}
+  @media(max-width:640px){
+    .grid.duo{grid-template-columns:1fr;}
+    .grid.duo .slot:nth-child(2){margin-top:0;}
+  }
+  .grid.duo.landscape .slot{aspect-ratio:16/11 !important;}
+
+  /* trio: three-work layout, used when a category has 3 pieces */
+  .grid.trio{
+    grid-template-columns:repeat(3, 1fr);
+  }
+  .grid.trio .slot{aspect-ratio:4/5;}
+  .grid.trio.landscape .slot{aspect-ratio:16/11;}
+  @media(max-width:900px){ .grid.trio{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:560px){ .grid.trio{grid-template-columns:1fr;} }
+
+  /* sextet: six-work layout for the poster wall */
+  .grid.sextet{
+    grid-template-columns:repeat(3, 1fr);
+  }
+  .grid.sextet .slot{aspect-ratio:4/5;}
+  @media(max-width:900px){ .grid.sextet{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:560px){ .grid.sextet{grid-template-columns:1fr;} }
+
+  /* ---------- filled slots (actual artwork) ---------- */
+  .slot.filled{
+    border-style:solid;
+    border-color:rgba(58,42,46,.08);
+    padding:0;
+    background:#fff;
+  }
+  .slot.filled::before{content:none;}
+  .slot.filled img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .slot.filled .cap{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    padding:16px 16px 14px;
+    background:linear-gradient(0deg, rgba(58,42,46,.82) 0%, rgba(58,42,46,.35) 55%, transparent 100%);
+    color:#fdf3ea;
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    font-size:.85rem;
+    letter-spacing:.01em;
+    opacity:0;
+    transform:translateY(6px);
+    transition:.25s ease;
+    z-index:2;
+  }
+  .slot.filled:hover .cap{opacity:1; transform:translateY(0);}
+  .slot.filled:hover{transform:translateY(-4px); border-color:var(--pink);}
+
+  /* ---------- artist statement ---------- */
+  .statement{
+    position:relative;
+    padding:120px 24px;
+    text-align:center;
+    background:var(--paper);
+    overflow:hidden;
+  }
+  .statement .brush{
+    position:absolute;
+    opacity:.5;
+    pointer-events:none;
+  }
+  .statement .brush.b1{top:20px; left:6%; width:120px;}
+  .statement .brush.b2{bottom:10px; right:8%; width:150px; transform:rotate(160deg);}
+  .statement blockquote{
+    max-width:780px;
+    margin:0 auto;
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    font-size:clamp(1.5rem, 3.4vw, 2.6rem);
+    line-height:1.35;
+    color:var(--ink);
+    position:relative;
+  }
+  .statement blockquote .mark{
+    color:var(--pink);
+  }
+  .statement cite{
+    display:block;
+    margin-top:28px;
+    font-style:normal;
+    font-family:'Quicksand',sans-serif;
+    font-weight:600;
+    font-size:.85rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:#a37f85;
+  }
+
+  /* floating doodle accents used across sections */
+  .doodle{
+    position:absolute;
+    pointer-events:none;
+    opacity:.35;
+    z-index:0;
+  }
+
+  /* ---------- hosting section ---------- */
+  .hosting{
+    background:var(--cream);
+    position:relative;
+  }
+  .hosting .portfolio-intro h2{color:var(--pink);}
+  .host-steps{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+    margin-top:10px;
+  }
+  @media(max-width:820px){ .host-steps{grid-template-columns:1fr;} }
+  .host-card{
+    background:var(--paper);
+    border:2px solid var(--peach-soft);
+    border-radius:20px;
+    padding:28px 24px;
+    position:relative;
+  }
+  .host-card .step-num{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:2.2rem;
+    color:var(--pink-soft);
+    line-height:1;
+    margin-bottom:10px;
+  }
+  .host-card h4{
+    font-family:'Fredoka',sans-serif;
+    font-size:1.1rem;
+    margin-bottom:10px;
+    color:var(--ink);
+  }
+  .host-card p{
+    font-size:.92rem;
+    line-height:1.6;
+    color:#584047;
+  }
+  .host-card code{
+    display:inline-block;
+    margin-top:8px;
+    background:var(--peach-soft);
+    padding:3px 8px;
+    border-radius:6px;
+    font-size:.78rem;
+    color:#5c3a20;
+  }
+  .host-note{
+    margin-top:30px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:.9rem;
+    color:#7a4c52;
+    font-weight:600;
+  }
+  .host-note .dot{width:6px;height:6px;border-radius:50%;background:var(--pink); flex:none;}
+
+  /* ---------- identity strip ---------- */
+  .identity{
+    background:var(--ink);
+    color:#fdf3ea;
+    padding:90px 0;
+  }
+  .identity .wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+  }
+  .identity h2{font-size:clamp(1.6rem,2.6vw,2.2rem); margin-bottom:18px; color:var(--peach);}
+  .identity p{color:#e3c9c0; line-height:1.75; margin-bottom:26px;}
+  .swatches{display:flex; gap:16px;}
+  .swatch{
+    flex:1;
+    border-radius:16px;
+    padding:20px 16px;
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:.8rem;
+    height:96px;
+    display:flex; align-items:flex-end;
+  }
+  .swatch.c1{background:var(--peach); color:#5c3a20;}
+  .swatch.c2{background:var(--pink); color:#5c1f26;}
+  .swatch.c3{background:var(--cream); color:#5c4a20;}
+
+  .pictogram-badge{
+    width:220px; height:220px; margin:0 auto;
+    border-radius:50%;
+    background:var(--pink);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 24px 50px rgba(0,0,0,.35);
+  }
+  .pictogram-badge svg{width:52%;}
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:70px 40px 40px;
+    text-align:center;
+    background:var(--grad);
+  }
+  footer .logo-mini{justify-content:center; font-size:2.2rem; margin-bottom:18px;}
+  footer p.tag{color:#7a4c52; font-weight:600; margin-bottom:26px;}
+  .footer-links{
+    display:flex; justify-content:center; gap:26px; margin-bottom:30px;
+    font-family:'Fredoka',sans-serif; font-weight:600; font-size:.85rem;
+  }
+  .footer-links a{color:#5c3a3f; border-bottom:2px solid transparent; padding-bottom:2px;}
+  .footer-links a:hover{border-color:#5c3a3f;}
+  footer .fine{font-size:.78rem; color:#8a5b60;}
+
+  ::selection{background:var(--pink); color:#fff;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-mini"><span>m</span><span>e</span><span>y</span><span>a</span></div>
+  <nav>
+    <ul>
+      <li><a href="#about">O meni</a></li>
+      <li><a href="#radovi">Radovi</a></li>
+      <li><a href="#identitet">Identitet</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-tag">Portfolio &nbsp;·&nbsp; Grafički dizajn</div>
+  <div class="hero-logo">
+    <span class="m">m</span><span class="e">e</span><span class="y">y</span><span class="a">a</span>
+  </div>
+  <div class="hero-role">Mejra Numanović</div>
+  <div class="hero-name">Grafički dizajner — Internacionalni fakultet, 2026.</div>
+  <div class="hero-scroll"></div>
+</section>
+
+<!-- ARTIST STATEMENT -->
+<section class="statement">
+  <svg class="brush b1" viewBox="0 0 140 60" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 40 C20 10, 45 55, 65 22 C82 -5, 105 35, 136 18" fill="none" stroke="#F299A0" stroke-width="7" stroke-linecap="round"/>
+  </svg>
+  <svg class="brush b2" viewBox="0 0 150 60" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 40 C20 10, 45 55, 65 22 C82 -5, 110 35, 146 18" fill="none" stroke="#FBC58E" stroke-width="7" stroke-linecap="round"/>
+  </svg>
+  <blockquote>
+    Dizajn je za mene <span class="mark">vizuelni jezik</span> — način da se osećaj, ideja i priča pretoče u nešto što se vidi, pamti i oseti.
+  </blockquote>
+  <cite>— Mejra Numanović</cite>
+</section>
+
+<!-- ABOUT -->
+<section class="page" id="about">
+  <div class="page-strip"><div class="num">O umetnici</div></div>
+  <div class="page-body">
+    <div class="about-grid">
+      <div class="about-body">
+        <span class="eyebrow">01 — O dizajnerki</span>
+        <h2>Zdravo, ja sam Mejra.</h2>
+        <p>Grafički dizajner sa posebnim interesovanjem za vizuelni identitet, ilustraciju i brendiranje. Kroz svoj rad težim stvaranju prepoznatljivih i funkcionalnih rešenja koja povezuju estetiku i komunikaciju.</p>
+        <p>Inspiraciju pronalazim u modi, umetnosti, prirodi i savremenim dizajnerskim trendovima, koje nastojim da pretočim u autentične vizuelne priče. Verujem da kvalitetan dizajn nije samo vizuelno privlačan, već i strateški osmišljen kako bi jasno preneo vrednosti i karakter brenda.</p>
+        <p>Svaki projekat posmatram kao priliku za istraživanje novih ideja, razvijanje kreativnosti i stvaranje jedinstvenog identiteta koji ostavlja trajan utisak.</p>
+        <div class="about-credit"><span class="dot"></span>Internacionalni fakultet, 2026. — Grafički dizajn</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="page" id="radovi">
+  <div class="page-strip"><div class="num">Radovi</div></div>
+  <div class="page-body">
+
+    <div class="portfolio-intro">
+      <span class="eyebrow">02 — Portfolio</span>
+      <h2>Izabrani radovi</h2>
+      <p>Zbirka radova koja obuhvata fotografiju, pejzaže, postere, skice, ilustracije i tipografska istraživanja.</p>
+    </div>
+
+    <div class="cat-nav">
+      <a href="#cat-foto">Fotografije</a>
+      <a href="#cat-pejzazi">Pejzaži</a>
+      <a href="#cat-posteri">Posteri</a>
+      <a href="#cat-skice">Skice</a>
+      <a href="#cat-ilustracije">Ilustracije</a>
+      <a href="#cat-tipografija">Tipografija</a>
+      <a href="#cat-ostalo">Ostali radovi</a>
+    </div>
+
+    <!-- Fotografije -->
+    <div class="category" id="cat-foto">
+      <div class="category-head"><span class="idx">2.1</span><h3>Fotografije</h3><span class="count">1 rad</span></div>
+      <div class="grid" style="grid-template-columns:minmax(220px, 340px);">
+        <div class="slot filled"><img src="images/foto-portret.png" alt="Obrađena fotografija — portret"><span class="cap">Portret · digitalna obrada fotografije</span></div>
+      </div>
+    </div>
+
+    <!-- Pejzaži -->
+    <div class="category" id="cat-pejzazi">
+      <div class="category-head"><span class="idx">2.2</span><h3>Pejzaži</h3><span class="count">3 rada</span></div>
+      <div class="grid trio landscape">
+        <div class="slot filled"><img src="images/bastenski-most.png" alt="Baštenski most sa vrbom"><span class="cap">Baštenski most · ulje na platnu</span></div>
+        <div class="slot filled"><img src="images/stene-i-jedrilice.png" alt="Stene i jedrilice na moru"><span class="cap">Stene i jedrilice · ulje na platnu</span></div>
+        <div class="slot filled"><img src="images/jesenji-put.png" alt="Jesenji put kroz šumu"><span class="cap">Jesenji put · ulje na platnu</span></div>
+      </div>
+    </div>
+
+    <!-- Posteri -->
+    <div class="category" id="cat-posteri">
+      <div class="category-head"><span class="idx">2.3</span><h3>Posteri</h3><span class="count">6 radova</span></div>
+      <div class="grid sextet">
+        <div class="slot filled"><img src="images/dont-text-drive.png" alt="Don't text & drive plakat"><span class="cap">Don't Text & Drive · društveni plakat</span></div>
+        <div class="slot filled"><img src="images/romeo-i-julija.png" alt="Romeo i Julija plakat"><span class="cap">Romeo i Julija · filmski/pozorišni plakat</span></div>
+        <div class="slot filled"><img src="images/jazz-poster.png" alt="Jazz plakat"><span class="cap">Jazz · muzički plakat</span></div>
+        <div class="slot filled"><img src="images/ramadan-mubarak.png" alt="Ramadan Mubarak plakat"><span class="cap">Ramadan Mubarak · čestitka/plakat</span></div>
+        <div class="slot filled"><img src="images/princeza-chihiro.png" alt="Princess Chihiro plakat"><span class="cap">Princess Chihiro · filmski plakat</span></div>
+        <div class="slot filled"><img src="images/moanairo.png" alt="Moanairo plakat"><span class="cap">Moanairo · filmski plakat</span></div>
+      </div>
+    </div>
+
+    <!-- Skice -->
+    <div class="category" id="cat-skice">
+      <div class="category-head"><span class="idx">2.4</span><h3>Skice</h3><span class="count">2 rada</span></div>
+      <div class="grid duo">
+        <div class="slot filled"><img src="images/smokve.png" alt="Smokve, akvarel skica"><span class="cap">Smokve · akvarel</span></div>
+        <div class="slot filled"><img src="images/plavi-cvet.png" alt="Plavi cvet, akvarel skica"><span class="cap">Plavi cvet · akvarel</span></div>
+      </div>
+    </div>
+
+    <!-- Ilustracije -->
+    <div class="category" id="cat-ilustracije">
+      <div class="category-head"><span class="idx">2.5</span><h3>Ilustracije</h3><span class="count">3 rada</span></div>
+      <div class="grid trio">
+        <div class="slot filled"><img src="images/devojka-bisernom-mindjusom.png" alt="Devojka sa bisernom minđušom, ulje na platnu"><span class="cap">Devojka sa bisernom minđušom · ulje na platnu</span></div>
+        <div class="slot filled"><img src="images/kolibrii.png" alt="Kolibrii, ulje na platnu"><span class="cap">Kolibrii · ulje na platnu</span></div>
+        <div class="slot filled"><img src="images/mermerna-glava.png" alt="Mermerna glava, mrtva priroda"><span class="cap">Mrtva priroda sa mermernom glavom · ulje na platnu</span></div>
+      </div>
+    </div>
+
+    <!-- Tipografija -->
+    <div class="category" id="cat-tipografija">
+      <div class="category-head"><span class="idx">2.6</span><h3>Tipografija</h3><span class="count">2 rada</span></div>
+      <div class="grid duo landscape">
+        <div class="slot filled"><img src="images/bauhaus-alfabet.png" alt="Bauhaus alfabet"><span class="cap">Bauhaus · tipografski alfabet</span></div>
+        <div class="slot filled"><img src="images/hrana-alfabet.png" alt="Alfabet sa ilustracijama hrane"><span class="cap">Ukusni alfabet · ilustrovana tipografija</span></div>
+      </div>
+    </div>
+
+    <!-- Ostalo -->
+    <div class="category" id="cat-ostalo">
+      <div class="category-head"><span class="idx">2.7</span><h3>Ostali radovi</h3><span class="count">3 detalja</span></div>
+      <div class="grid trio">
+        <div class="slot filled"><img src="images/detalj-vrba-1.png" alt="Detalj slike, vrba"><span class="cap">Detalj · Baštenski most</span></div>
+        <div class="slot filled"><img src="images/detalj-vrba-2.png" alt="Detalj slike, vrba izbliza"><span class="cap">Detalj · Baštenski most</span></div>
+        <div class="slot filled"><img src="images/detalj-jesen.png" alt="Detalj slike, jesenje lišće"><span class="cap">Detalj · Jesenji put</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- IDENTITY -->
+<section class="identity" id="identitet">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" style="color:var(--peach)">03 — Vizuelni identitet</span>
+      <h2>Sopstveni brend: MEYA</h2>
+      <p>Logotip i paleta boja koje nose ovaj portfolio deo su ličnog vizuelnog identiteta, dizajniranog kao spoj elegancije, jednostavnosti i prepoznatljivosti — čist rukopis tipografije, toplu paletu i piktogram izveden iz slova „M“.</p>
+      <div class="swatches">
+        <div class="swatch c1">#FBC58E</div>
+        <div class="swatch c2">#F299A0</div>
+        <div class="swatch c3">#F7EFA0</div>
+      </div>
+    </div>
+    <div class="pictogram-badge">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <path d="M45 150 C45 100, 55 60, 85 60 C105 60, 100 90, 90 100 C80 110, 70 90, 85 70 C100 55, 130 55, 140 80 C148 100, 148 130, 148 150"
+              fill="none" stroke="#FBC58E" stroke-width="14" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="kontakt">
+  <div class="logo-mini" style="justify-content:center;"><span>m</span><span>e</span><span>y</span><span>a</span></div>
+  <p class="tag">Grafički dizajner — Mejra Numanović</p>
+  <div class="footer-links">
+    <a href="#top">Početna</a>
+    <a href="#about">O meni</a>
+    <a href="#radovi">Radovi</a>
+    <a href="mailto:mejra@example.com">Email</a>
+    <a href="#">Instagram</a>
+  </div>
+  <p class="fine">Internacionalni fakultet, 2026. · Grafički dizajn · © Mejra Numanović</p>
+
+</footer>
+
+
+</body>
+</html>
